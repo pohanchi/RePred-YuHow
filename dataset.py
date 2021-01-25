@@ -17,7 +17,7 @@ class Resisitivity_Dataset(Dataset):
             dataset.append(float_item)
         
         self.dataset = torch.stack(dataset)[:,1:]
-        self.label = torch.stack(dataset)[:,1]
+        self.label = torch.stack(dataset)[:,0]
 
         num_sample = int(len(self.dataset) * 0.9)
 
