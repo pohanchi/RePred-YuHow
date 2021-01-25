@@ -41,7 +41,7 @@ def train(expert, optimizer, criterion, dataloader, eval_dataloader, config):
             if step % config['train_args']['eval_step'] == 0:
                 # evaluate the prediction whether is close to the ground truth
                 eval_loss = evaluate(eval_dataloader, expert, config['eval_part'],step)
-                torch.save(expert.state_dict(), config['path']['model_save_path'])
+                torch.save(expert.state_dict(), f"step-{step}_"+config['path']['model_save_path'])
     
     return 
 
@@ -63,6 +63,7 @@ def evaluate(eval_dataloader, model, config_dict,step):
             label_list.extend(label.tolist())
     eval_loss /= (num+1)
     wandb.log({"eval_loss":eval_loss.item()},step=step)
+    
     # write the (prediction, label) to the output file
     zip_object = zip(prediction_list, label_list)
     zipped_list = list(zip_object)
