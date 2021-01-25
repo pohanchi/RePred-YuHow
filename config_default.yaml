@@ -1,0 +1,21 @@
+
+project_name: resisitivity_prediction
+exp_name: test
+train_args:
+  epoches: 10
+  batch_size: 20
+  lr: 4.0e-4
+  eval_step: 500
+
+model:
+  input_size: 3
+  hidden_size: 50
+  middle_size: 200
+  output_size: 1
+
+path: 
+  data_path: data.txt
+  model_save_path: model.pt
+
+eval_part: 
+  output_file_path: output_result.txt
